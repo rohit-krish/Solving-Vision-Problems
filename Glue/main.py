@@ -1,10 +1,8 @@
-from mylib.show import stackIt
 import cv2
 from os import listdir
 import numpy as np
 
 
-# colors = [(252, 3, 3), (252, 186, 3), (78, 252, 3), (3, 44, 252), (252, 3, 231)]  # RGB
 def sharpen_image(img):
     kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
     return cv2.filter2D(img, -1, kernel)
@@ -30,9 +28,7 @@ for img_name in listdir("./assets/"):
     outer_contour_indxes = [*map(lambda x: x[0], outer_contour_indxes)]
     outer_contours = [outer_contours[idx] for idx in outer_contour_indxes]
 
-    cv2.imshow("window", stackIt([[img, edges]]))
-
-    for i, gb_cnt in enumerate(outer_contours):
+    for gb_cnt in outer_contours:
         mask = np.zeros_like(edges, dtype="uint8")
         cv2.drawContours(mask, [gb_cnt], -1, 255, cv2.FILLED)
         bottle = cv2.bitwise_and(img, img, mask=mask)
@@ -58,13 +54,17 @@ for img_name in listdir("./assets/"):
         elif len_inner_contours > 2:
             result = "Torn Label"
         elif len_inner_contours == 2:
-            inner_contours = [inner_contours[np.argmax([cv2.contourArea(cnt) for cnt in inner_contours])]]
+            inner_contours = [
+                inner_contours[
+                    np.argmax([cv2.contourArea(cnt) for cnt in inner_contours])
+                ]
+            ]
 
             # decide if it is straight or tilted (solution. checking the difference in minAreaRect and normal rect)
 
             min_area_rect = list(cv2.minAreaRect(inner_contours[0]))
             box = cv2.boxPoints(min_area_rect).astype(int)
-            
+
             min_x = int(np.min(box[:, 0]))
             max_x = int(np.max(box[:, 0]))
             min_y = int(np.min(box[:, 1]))
@@ -74,20 +74,28 @@ for img_name in listdir("./assets/"):
 
             x, y, w, h = cv2.boundingRect(inner_contours[0])
 
-            area_diff = abs((w*h) - (min_rect_w * min_rect_h))
+            area_diff = abs((w * h) - (min_rect_w * min_rect_h))
             if area_diff < 400:
-                result = 'Good Label'
+                result = "Good Label"
             else:
-                result = 'deciding'
+                result = "deciding"
                 inner_contours = [cv2.approxPolyDP(inner_contours[0], 3, True)]
                 if len(inner_contours[0]) == 4:
-                    result = 'Good Label'
+                    result = "Good Label"
                 else:
-                    result = 'Torn Label'
+                    result = "Tilted Label"
 
-        cv2.drawContours(bottle, inner_contours, -1, 255, 1)
-        cv2.imshow("bottle", stackIt([[bottle]], [[result]]))
-        cv2.waitKey()
+        x, y, w, h = cv2.boundingRect(gb_cnt[0])
+        cv2.putText(
+            img,
+            result+' |',
+            (x - 60, 20),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.6,
+            (0, 255, 0),
+            1,
+        )
 
+    cv2.imshow("window", img)
     if cv2.waitKey(0) & 0xFF == ord("q"):
         break
