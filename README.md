@@ -17,4 +17,4 @@ On a production line for bottles of glue do the following necessary inspection t
 <img src="./Labels On Glue/result.png">
 <br>
 
-though i got most of them correctly, since i don't have the access to adjust the settings of the environment or to collect more data; that was not intuitive, so i won't say that was the but it's not the most generalized solution for it.
+Though i got most of them correctly, since i don't have the access to adjust the settings of the environment or to collect more data(which was not intuitive), i won't say that was the most generalized solution for it.
