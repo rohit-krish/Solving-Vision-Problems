@@ -10,11 +10,17 @@ On a production line for bottles of glue do the following necessary inspection t
 2. Check that the label on the bottle is straight.
 3. Check that the label is not torn or folded.
 
-<img src="./Glue/problem_banner.png">
+<img src="./Labels On Glue/problem_banner.png">
 
-<b><a href='./Glue/main.py'>Solution</a></b>
+<b><a href='./Labels On Glue/main.py'>Solution</a></b>
 
-<img src="./Glue/result.png">
+<img src="./Labels On Glue/result.png">
 <br>
 
-though i got most of them correctly, since i don't have the access to adjust the settings of the environment or to collect more data; that was not intuitive, so i won't say that was the but it's not the most generalized solution for it.
+Though i got most of them correctly, since i don't have the access to adjust the settings of the environment or to collect more data(which was not intuitive), i won't say that was the most generalized solution for it.
+
+## · O-rings
+
+You are asked to detect defects (notches and breaks) in rubber O-rings as they pass before an inspection camera
+
+<img src="./O-rings/problem_banner.png">
