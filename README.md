@@ -24,3 +24,7 @@ Though i got most of them correctly, since i don't have the access to adjust the
 You are asked to detect defects (notches and breaks) in rubber O-rings as they pass before an inspection camera
 
 <img src="./O-rings/problem_banner.png">
+
+<b><a href='./O-rings/main.py'>Solution</a></b>
+
+<img src="./O-rings/result.png">
