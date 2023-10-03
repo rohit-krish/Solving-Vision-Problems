@@ -18,3 +18,9 @@ On a production line for bottles of glue do the following necessary inspection t
 <br>
 
 Though i got most of them correctly, since i don't have the access to adjust the settings of the environment or to collect more data(which was not intuitive), i won't say that was the most generalized solution for it.
+
+## · O-rings
+
+You are asked to detect defects (notches and breaks) in rubber O-rings as they pass before an inspection camera
+
+<img src="./O-rings/problem_banner.png">
